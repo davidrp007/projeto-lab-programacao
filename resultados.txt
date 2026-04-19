@@ -1,0 +1,7 @@
+----- NOVO CÁLCULO -----
+Velocidade inicial: 80.0 m/s
+Ângulo: 30.0 graus
+Tempo de voo: 8.16 s
+Altura máxima: 81.63 m
+Alcance: 565.57 m
+
