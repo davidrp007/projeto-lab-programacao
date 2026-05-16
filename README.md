@@ -1,18 +1,18 @@
 # TextNorm Pipeline
-
-> **Laboratório de Programação – TP2 | UTAD 2025/26**  
-> Normalização de Texto com Pipeline de Pré-Processamento e SLMs
+    Laboratório de Programação – TP2 | UTAD 2025/26
+    Normalização de Texto com Pipeline de Pré-Processamento e SLMs
 
 ## Descrição
 
 Aplicação em Python com interface gráfica (tkinter) que processa documentos em **PDF, DOCX e TXT**, aplica uma pipeline configurável de limpeza e pré-processamento de texto, prepara o conteúdo para envio a um modelo de linguagem (SLM) e gera relatórios automáticos em **HTML ou PDF**.
 
-
 ##  Ficheiros
 
-textnorm_gui.py   →  aplicação completa com interface gráfica (tkinter)
-requirements.txt  →  dependências necessárias
-
+tp2-lab.py         →  aplicação completa com interface gráfica (tkinter)
+requirements.txt   →  dependências necessárias
+README.md          →  este ficheiro
+exemplo_input.txt  →  ficheiro de texto para testar a aplicação
+notas_entrega.txt  →  estado de implementação de cada tarefa
 
 ##  Interface — Separadores
 
@@ -35,13 +35,14 @@ requirements.txt  →  dependências necessárias
 - Cards com estatísticas: nº de chunks, palavras/chunk, maior, menor
 
 ### 4 · API SLM
-- Configura quantos chunks enviar (spinbox)
-- Barra de progresso durante o envio (corre em segundo plano)
-- Mostra o texto final normalizado pela API
-- Cards: chunks enviados, sucesso, erros, tokens gerados, tempo médio
+-Configura quantos chunks enviar (spinbox)
+-Barra de progresso durante o envio (corre em segundo plano)
+-Retry automático — tenta até 3 vezes por chunk, com feedback em tempo real 
+-Mostra o texto final normalizado pela API
+-Cards: chunks enviados, sucesso, erros, tentativas totais, tokens gerados, tempo médio
 
 ### 5 · Relatório
-- Estado visual de cada etapa (✓ Feito / ⏳ Pendente)
+- Estado visual de cada etapa (Feito / Pendente)
 - Exporta relatório em **HTML** (sem dependências extra)
 - Exporta relatório em **PDF** (requer weasyprint)
 - Pré-visualização do HTML gerado na própria janela
@@ -97,7 +98,7 @@ O idioma detetado é usado automaticamente para gerar os prompts no idioma corre
   ]
 }
 
-
+Retry automático: se a API falhar, o sistema tenta automaticamente até 3 vezes antes de desistir. A interface mostra em tempo real se a resposta veio à 1ª, 2ª ou 3ª tentativa, ou se houve erro.
 
 ## Relatório Gerado
 
@@ -109,6 +110,13 @@ O relatório inclui:
 - Resultados da API: chunks enviados, tokens gerados, tempo médio
 - Amostra do texto normalizado
 
-## 📄 Licença
+## Grupo
+Nome                                  Número
+David Pinto                           al2025163203
+Diogo Baptista                        al2025162057 
+Tomás Cardona                         al2025162399
+
+
+##  Licença
 
 Projeto académico — UTAD 2025/26 · Laboratório de Programação
