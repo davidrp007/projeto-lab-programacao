@@ -1,0 +1,84 @@
+========================================
+TextNorm Pipeline - Notas de Entrega
+========================================
+
+Grupo: 107
+Elementos:
+  - David Pinto       (al2025163203)
+  - Diogo Baptista    (al2025162057)
+  - Tomas Cardona     (al2025162399)
+
+Cadeira: Laboratorio de Programacao
+Docente: Nuno Goncalves
+
+----------------------------------------
+FICHEIROS ENTREGUES
+----------------------------------------
+
+  tp2-lab.py         -> codigo principal da aplicacao (baseado em textnorm_gui.py)
+  exemplo_input.txt  -> ficheiro de texto para testar
+  README.md          -> documentacao do projeto
+
+----------------------------------------
+O QUE FOI IMPLEMENTADO 
+----------------------------------------
+
+TAREFA 1 - Extracao de Texto Multi-formato
+  [x] Upload e leitura de ficheiros
+  [x] Suporte para PDF (pdfplumber)
+  [x] Suporte para DOCX (python-docx)
+  [x] Suporte para TXT (com detecao de encoding via chardet)
+  [x] Texto extraido apresentado em bruto sem transformacoes
+  [x] Preservacao de quebras de linha e artefactos originais
+
+TAREFA 2 - Pipeline de Limpeza e Pre-Processamento
+  [x] Pipeline configuravel com 8 etapas independentes
+  [x] Cada etapa pode ser ativada/desativada via checkbox
+  [x] Remocao de artefactos e caracteres invalidos
+  [x] Normalizacao Unicode (forma NFC)
+  [x] Correcao de quebras de linha (CRLF -> LF)
+  [x] Remocao de numeros de pagina
+  [x] Detecao e remocao de cabecalhos/rodapes repetidos
+  [x] Reconstrucao de paragrafos partidos (comum em PDFs)
+  [x] Normalizacao de pontuacao (aspas curvas, travessoes)
+  [x] Normalizacao de espacos em excesso
+  [x] Visualizacao do texto antes e depois da limpeza (lado a lado)
+  [x] Estatisticas por etapa (chars removidos, linhas antes/depois)
+
+TAREFA 3 - Preparacao do Input para o SLM
+  [x] Segmentacao em chunks (4 estrategias disponíveis)
+      - Tamanho fixo 512 chars (com overlap de 50)
+      - Tamanho fixo 1024 chars (com overlap de 100)
+      - Por paragrafo (max 1024 chars)
+      - Por frase (max 512 chars)
+  [x] Detecao automatica de idioma por analise de trigramas
+      (suporte: Portugues, Ingles, Espanhol, Frances)
+  [x] Geracao automatica de prompts no idioma detetado
+      (5 tipos: geral, formal, academico, resumo, gramatical)
+  [x] Preview interativo de cada chunk com prompt lado a lado
+
+----------------------------------------
+FUNCIONALIDADES EXTRA IMPLEMENTADAS
+----------------------------------------
+
+  - Interface grafica com tkinter (5 separadores)
+  - Detecao de idioma sem bibliotecas externas (trigramas)
+  - Cards de estatisticas por etapa da pipeline
+  - Barra de progresso e threading na comunicacao com API
+  - Estado visual do pipeline no separador de relatorio
+
+  [x] Tarefa 4: ligacao a API SLM com retry automatico -- IMPLEMENTADO
+  [X] Tarefa 5: geracao de relatorio HTML/PDF (ja tem o codigo base)
+  [X] Relatorio do trabalho completo (em progresso)
+  [X] Apresentacao eletronica
+
+----------------------------------------
+COMO CORRER
+----------------------------------------
+
+  1. pip install pdfplumber python-docx chardet
+  2. python tp2-lab.py
+
+  Para testar: usar o ficheiro exemplo_input.txt incluido.
+
+========================================
