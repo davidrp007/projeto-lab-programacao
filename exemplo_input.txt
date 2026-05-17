@@ -1,0 +1,44 @@
+Introdução à Programação em Python
+
+Python   é uma linguagem de programação de alto nível,  interpretada e de propósito geral.
+Foi criada por Guido van Rossum e lançada em 1991.
+É conhecida pela sua sintaxe simples e legível, o que a torna ideal para iniciantes.
+
+1
+2
+3
+
+Características Principais
+
+- Sintaxe clara e legível
+- Tipagem dinâmica
+- Gestão automática de memória
+- Grande biblioteca padrão
+- Comunidade ativa
+
+Introdução à Programação em Python
+Introdução à Programação em Python
+
+Aplicações de Python
+
+Python é amplamente utilizado em diversas áreas como:
+desenvolvimento web, ciência de dados,
+inteligência artificial, automação de tarefas
+e scripting de sistema.
+
+Frameworks populares incluem Django e Flask para web,
+NumPy e Pandas para análise de dados,
+e TensorFlow e PyTorch para machine learning.
+
+Exemplo de código Python:
+
+def saudacao(nome):
+    return "Olá, " + nome + "!"
+
+print(saudacao("Mundo"))
+
+Conclusão
+
+Em suma, Python é uma linguagem  versátil,  poderosa   e acessível.
+A sua popularidade continua a crescer  tornando-a uma das linguagens
+mais usadas no mundo atualmente.
