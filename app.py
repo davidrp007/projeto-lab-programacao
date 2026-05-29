@@ -11,7 +11,6 @@ from lang_prompt import detetar_idioma, gerar_prompt, NOMES_IDIOMA, TIPOS_NORMAL
 from api import chamar_api, API_URL, API_MODEL
 from gerador_relatorio import gerar_relatorio_html, guardar_html, guardar_pdf
 
-
 # ── Cores e fontes ────────────────────────────────────────────────────────────
 COR_BG      = "#1a1a1a"
 COR_PANEL   = "#242424"
@@ -28,12 +27,7 @@ FONTE_TITULO= ("Courier New", 12, "bold")
 
 
 class TextNormApp(tk.Tk):
-    """
-    Classe principal da aplicação — herda de tk.Tk (a janela raiz do tkinter).
-    Organizada em 5 separadores, um por tarefa do enunciado.
-    O estado (texto extraído, limpo, chunks, etc.) é guardado em atributos
-    da classe para ser partilhado entre separadores.
-    """
+
 
     def __init__(self):
         super().__init__()
@@ -396,23 +390,30 @@ class TextNormApp(tk.Tk):
         self.progresso_var.set(0)
 
         def tarefa():
-            resultados = []
-            for i, prompt in enumerate(self.prompts[:n]):
-                self._status(f"Chunk {i+1}/{n} — Tentativa 1...")
-                r = chamar_api(prompt)   # api_client.py — com retry automático
-                resultados.append(r)
-                self.progresso_var.set((i + 1) / n * 100)
-                t = r.get("tentativas", 1)
-                if r["sucesso"]:
-                    self._status(f"Chunk {i+1}/{n} — OK à {t}ª tentativa ({r['tempo']}s)")
-                else:
-                    self._status(f"Chunk {i+1}/{n} — Erro após {t} tentativas")
-            self.resultados_api = resultados
-            self.texto_final = "\n\n".join(
-                r["conteudo"] for r in resultados if r.get("sucesso") and r.get("conteudo"))
-            self.after(0, self._atualizar_tab4)
+            try:
+                resultados = []
+                self._status(f"A ligar à API... ({n} chunk(s) para enviar)")
+                for i, prompt in enumerate(self.prompts[:n]):
+                    self._status(f"Chunk {i+1}/{n} — A enviar...")
+                    r = chamar_api(prompt)
+                    resultados.append(r)
+                    self.progresso_var.set((i + 1) / n * 100)
+                    t = r.get("tentativas", 1)
+                    if r["sucesso"]:
+                        self._status(f"Chunk {i+1}/{n} — OK à {t}ª tentativa ({r['tempo']}s)")
+                    else:
+                        self._status(f"Chunk {i+1}/{n} — Erro: {r.get('erro', 'desconhecido')}")
+                self.resultados_api = resultados
+                self.texto_final = "\n\n".join(
+                    r["conteudo"] for r in resultados if r.get("sucesso") and r.get("conteudo"))
+                self.after(0, self._atualizar_tab4)
+            except Exception as e:
+                # mostra qualquer erro inesperado na barra de estado
+                self.after(0, lambda: self._status(f"ERRO inesperado na API: {e}"))
+                self.after(0, lambda: messagebox.showerror("Erro API", str(e)))
 
         threading.Thread(target=tarefa, daemon=True).start()
+        self._status("A iniciar pedido à API...")
 
     def _demo_api(self):
         """
@@ -512,10 +513,7 @@ class TextNormApp(tk.Tk):
             tk.Label(f, text=tick, font=("Courier New", 9, "bold"), bg=COR_PANEL, fg=cor).pack()
 
     def _gerar_relatorio(self, fmt):
-        """
-        Chama gerar_relatorio_html() do report_generator.py e guarda em ficheiro.
-        Usa guardar_html() ou guardar_pdf() do mesmo módulo.
-        """
+      
         if not self.texto_bruto:
             messagebox.showwarning("Aviso", "Extrai primeiro um ficheiro no separador 1.")
             return
