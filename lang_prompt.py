@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """
 lang_prompt.py
 Tarefa 3 – Deteção de Idioma e Geração de Prompts
@@ -5,6 +6,8 @@ Deteção por trigramas sem bibliotecas externas.
 Prompts automáticos no idioma detetado.
 """
 
+=======
+>>>>>>> f5d2c74ffab1ef6916f62a54f1a928a4c29a6566
 import re
 from collections import Counter
 
