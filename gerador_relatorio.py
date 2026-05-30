@@ -1,14 +1,13 @@
-"""
-report_generator.py
-Tarefa 5 – Geração de Relatórios Automáticos
-Exporta em HTML (sem dependências) ou PDF (requer weasyprint).
-"""
-
 import html as html_module
 import datetime
 
-from lang_prompt import NOMES_IDIOMA
-from api import API_MODEL
+# valores definidos aqui diretamente para não depender de outros módulos
+NOMES_IDIOMA = {
+    "pt": "Português", "en": "English",
+    "es": "Español",   "fr": "Français",
+    "desconhecido": "Desconhecido",
+}
+API_MODEL = "llama-3.2-1b-instruct"
 
 
 def gerar_relatorio_html(

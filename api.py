@@ -1,11 +1,3 @@
-"""
-api_client.py
-Tarefa 4 – Ligação à API do SLM
-Endpoint: https://reality.utad.net/slm
-Modelo: llama-3.2-1b-instruct
-Retry automático até 3 tentativas por chunk.
-"""
-
 import json
 import time
 import urllib.request
